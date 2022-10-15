@@ -35,7 +35,7 @@ console.log('new coin ', coin)
 
 console.log(nacl.util.encodeBase64(b.publicKey))
 
-// b spends to c
+// b transfers coin ownership to c
 
 coin = {
   coin: 'coin_example',

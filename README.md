@@ -181,8 +181,8 @@ Will send 5 coins to the public key specified.
 
 # peer commands
 
-* send <number of coins> <recipient_pk>
-* balance
+* send <number_of_coins> <number of coins> <recipient_pk> : send money to another wallet
+* balance : get the balance of your wallet
 
 # disclaimer
 

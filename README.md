@@ -5,9 +5,8 @@ silly digital cash experiment whereby a bespoke p2p network is created to exchan
  digital tokens that are minted via an external smart contract & crypto currency.
 
 Coins are just javascript objects including public keys and signatures from the
- last two owners forming a chain of trust (but no transaction history). The current
- owner of the coin can mint & redeem coins via a different crypto currency via a
- smart contract*.
+ last two owners forming a chain of trust. The current owner of the coin can mint
+ & redeem coins via a different crypto currency the same smart contract*.
 
 # overview
 
@@ -36,12 +35,9 @@ var coin = {
  `coin` is a long random string / can be anything
  `sig` is a signature of the coin from the previous owner.
 
- To exchange a coin the current owner creates a new object setting the owner
-  to be the recipient and themselves as the `prev_owner` and signs it. This
-  message is then propagated around the p2p network.
-
-Other peers can do simple signature verification before updating their
- own internal data structures.
+ To exchange a coin the current owner signs ownership to a new public key. This
+  message is then propagated around the p2p network. Each p2p can validate the
+  signature for themselves before updating their own list of coins.
 
 # minting and redeeming coins
 
@@ -71,8 +67,6 @@ Potentially yes and more issues, this is an attempt to build something and work
  keeping track of the complete transaction history of coin ownership but it
  may be needed to truely avoid double spending.
 
-... so this is just a mad science experiment!
-
 If the owner of a coin attempts to double spend the p2p system should only pick the
  first transaction that is replicated as the "winner" and the other transactions
  will fail (in theory).
@@ -85,15 +79,10 @@ Only the owner of a the cryptographic keypair for a particular node can sign a v
  transaction / transfer coin ownership. The current prototype is vulnerable to network
  flooding and no mechanism for blocking bad peers is implemented.
 
-# technical
-
-This prototype uses an eventually consistent data structure shared using gossip
-amonst peers (scuttlebutt) and webRTC (webrtc-swarm) as the p2p networking layer.
-
 # running the prototype
 
 The current prootype uses webRTC via node js (wrtc) and signalhub. This is intentional
- because it should be possible to run this system from inside web browsers.
+ because it should be eventually possible to run this system using web browsers.
 
 ```sh
 clone signalhub into the folder & npm install
@@ -107,14 +96,6 @@ node peer
 
 # in another
 mint <peer_public_key>
-
-# in the peer tab
-
-send 4 <peer_public_key>
-
-balance
-
-#
 
 ```
 
@@ -141,5 +122,3 @@ Will send 5 coins to the public key specified.
 
 this is a highly experimental system that could be fundamentally flawed in numerous ways,
 vulnerable to timing attacks, race conditions, double spending and other issues.
-
-Don't use this system yet / at all.

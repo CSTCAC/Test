@@ -5,8 +5,15 @@ silly digital cash experiment whereby a bespoke p2p network is created to exchan
  digital tokens that are minted via an external smart contract & crypto currency.
 
 Coins are just javascript objects including public keys and signatures from the
- last two owners forming a chain of trust. The current owner of the coin can mint
- & redeem coins via a different crypto currency the same smart contract*.
+ last two owners forming a chain of trust. This is similar to blockchains / bitcoins
+ except that a list of coins and coin owners is shared amongst a p2p network.
+
+The network has to agree which coin belongs to which owner, no mining is needed
+ or used. The tokens have value based on the smart contract and external crypto
+ currency that initially minted the coins and can be redeemed into that currency.
+
+This means that coins that are minted at a particular exchange rate may be worth
+ more or less when eventually cashed out.
 
 # overview
 
@@ -121,4 +128,8 @@ Will send 5 coins to the public key specified.
  done by a centralised website, gold bullion or company.. doesn't need to be a smart contract.
 
 this is a highly experimental system that could be fundamentally flawed in numerous ways,
-vulnerable to timing attacks, race conditions, double spending and other issues.
+vulnerable to timing attacks, race conditions, double spending and many other issues.
+
+# feeback or comments
+
+if you have any feedback, spotted some security or design issues please let me know!

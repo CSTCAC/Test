@@ -1,16 +1,26 @@
 
 # mcredible
 
-spare time digital cash experiment whereby a bespoke p2p network is created to exchange
+silly digital cash experiment whereby a bespoke p2p network is created to exchange
  digital tokens that are minted via an external smart contract & crypto currency.
 
-## overview
+Coins are just javascript objects including public keys and signatures from the
+ last two owners forming a chain of trust (but no transaction history). The current
+ owner of the coin can mint & redeem coins via a different crypto currency via a
+ smart contract*.
+
+# overview
 
 A p2p network is created where each node has cryptographic keypair for signing
  and verifying coin transfer. Each node agrees upon the the same shared data structure
  using gossip to create an eventually consistent database.
 
-The database each node stores is an array of javascript objects that represent
+Each node is essentially a wallet and an infrastucture node replicating the
+ available coins and current coin owners amongst all peers. This does not include
+ transaction history. The database is finite and static in size as long as no new
+ coins are added.
+
+The database for each node is an array of javascript objects that represent
  "coins". A coin is a simple object:
 
  ```js
@@ -33,7 +43,7 @@ var coin = {
 Other peers can do simple signature verification before updating their
  own internal data structures.
 
-## minting and redeeming coins
+# minting and redeeming coins
 
 An ethereum smart contract can be used to mint and redeem coins. Once you pay some
  ETH and give the contract a public key for your wallet you will have coins added
@@ -74,6 +84,11 @@ Each node in the p2p system replicates the same data structure and has to agree
 Only the owner of a the cryptographic keypair for a particular node can sign a valid
  transaction / transfer coin ownership. The current prototype is vulnerable to network
  flooding and no mechanism for blocking bad peers is implemented.
+
+# technical
+
+This prototype uses an eventually consistent data structure shared using gossip
+amonst peers (scuttlebutt) and webRTC (webrtc-swarm) as the p2p networking layer.
 
 # running the prototype
 
@@ -120,6 +135,11 @@ Will send 5 coins to the public key specified.
 
 # disclaimer
 
-this is a highly experimental system that may not be resistant to timing, race conditions,
- double spending and other issues. Don't use this system yet until it has undergone
- intensive security audits and user testing!
+*I still haven't tested out the smart contract bit for actually minting coins backed
+ by a real crypto currency like ethereum. However this minting and redeeming could be
+ done by a centralised website, gold bullion or company.. doesn't need to be a smart contract.
+
+this is a highly experimental system that could be fundamentally flawed in numerous ways,
+vulnerable to timing attacks, race conditions, double spending and other issues.
+
+Don't use this system yet / at all.

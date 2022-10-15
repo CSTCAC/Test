@@ -1,13 +1,12 @@
 {
   "name": "mcredible",
   "version": "1.0.0",
-  "description": "",
+  "description": "silly p2p crypto currency experiment",
   "main": "index.js",
   "scripts": {
     "signalhub": "node ./signalhub/bin.js listen --port 9999"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "m-onz",
   "dependencies": {
     "minimist": "^1.2.7",
     "scuttlebutt": "^5.6.15",
